@@ -1,12 +1,15 @@
 <template>
   <v-app>
-    <v-card class="mx-auto overflow-hidden" height="400" width="344">
-      <v-system-bar color="deep-purple darken-3"></v-system-bar>
-      <Navbar />
-    </v-card>
+    <Navbar />
+    <v-layout align-center justify-center column>
+      <p>{{ quote}}</p>
+      <v-btn @click="fetchQuote" color="primary">New quote</v-btn>
+    </v-layout>
   </v-app>
 </template>
-<script lang="ts">
+<script>
+import axios from "axios";
+
 import Navbar from "./components/Navbar.vue";
 
 export default {
@@ -15,9 +18,35 @@ export default {
   },
   name: "App",
   data() {
-    return {};
+    return {
+      quote: "Loading...",
+      index: 0
+    };
+  },
+  methods: {
+    fetchQuote() {
+      this.different = false;
+      axios
+        .post(
+          "https://inspire.martijnd.workers.dev",
+          {
+            index: this.index
+          },
+          {
+            headers: {
+              "Content-Type": "application/json"
+            }
+          }
+        )
+        .then(res => {
+          this.quote = res.data.quote;
+          this.index = res.data.index;
+        });
+    }
   },
 
-  mounted() {}
+  mounted() {
+    this.fetchQuote();
+  }
 };
 </script>

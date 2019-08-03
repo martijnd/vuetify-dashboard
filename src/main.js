@@ -3,7 +3,7 @@ import App from './App.vue'
 import vuetify from './plugins/vuetify'
 
 Vue.config.productionTip = false
-Vue.prototype.$appName = 'Vuetify'
+Vue.prototype.$appName = 'Quote'
 
 new Vue({
   vuetify,

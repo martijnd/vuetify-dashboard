@@ -8,11 +8,12 @@
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
     </v-app-bar>
-    <v-navigation-drawer v-model="drawer" absolute bottom temporary>
+    <v-navigation-drawer v-model="drawer" absolute left temporary>
       <v-list nav dense>
-        <v-list-item-group v-model="group" active-class="deep-purple--text text--accent-4">
+        <v-subheader>Inspiring Quotes</v-subheader>
+        <v-list-item-group active-class="deep-purple--text text--accent-4">
           <v-list-item>
-            <v-list-item-title>Foo</v-list-item-title>
+            <v-list-item-title>Quotes</v-list-item-title>
           </v-list-item>
 
           <v-list-item>
@@ -36,8 +37,7 @@
 export default {
   data() {
     return {
-      drawer: false,
-      group: true
+      drawer: false
     };
   }
 };

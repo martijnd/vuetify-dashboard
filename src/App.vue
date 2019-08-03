@@ -1,22 +1,13 @@
 <template>
   <v-app>
-    <Navbar />
+    <Navbar @newQuote="fetchQuote" />
     <v-layout align-center justify-center column>
-      <v-dialog v-model="dialog" width="500">
-        <template v-slot:activator="{ on }">
-          <v-btn color="red lighten-2" @click="fetchQuote" dark v-on="on">Click me</v-btn>
-        </template>
-        <v-card>
-          <v-card-title class="headline" primary-title>Quote of the day</v-card-title>
-          <v-card-text class="pt-4">{{ quote }}</v-card-text>
-          <v-divider></v-divider>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn color="primary" text @click="dialog = false">Cool stuff</v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
+      <blockquote class="blockquote">{{ quote }}</blockquote>
     </v-layout>
+    <v-snackbar color="deep-purple accent-4" v-model="snackbar">
+      Fetched new quote
+      <v-btn color="white" text @click="snackbar = false">Close</v-btn>
+    </v-snackbar>
   </v-app>
 </template>
 <script>
@@ -33,11 +24,13 @@ export default {
     return {
       quote: "Loading...",
       dialog: false,
+      snackbar: false,
       index: 0
     };
   },
   methods: {
     fetchQuote() {
+      this.snackbar = true;
       const data = {
         index: this.index
       };

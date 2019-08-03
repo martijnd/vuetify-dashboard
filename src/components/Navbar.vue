@@ -4,8 +4,8 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>{{ $appName }}</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
+      <v-btn icon @click="$emit('newQuote')">
+        <v-icon>mdi-refresh</v-icon>
       </v-btn>
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" absolute left temporary>
